@@ -6,7 +6,7 @@
     <!-- Configura la vista para dispositivos móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Título que aparecerá en la pestaña del navegador -->
-    <title>LABORATORIO CRUD</title>
+    <title>LABORATORIO</title>
     <!-- Configura el logo del sitio web -->
     <link rel="icon" href="https://www.uniremington.edu.co/wp-content/uploads/2018/10/favicon-uniremington-32x32.png" sizes="32x32">
     <style>
@@ -33,7 +33,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
             padding: 20px; /* Relleno interior */
             margin: 10px 0; /* Márgenes superior e inferior */
-            width: 300px; /* Ancho fijo del formulario */
+            width: 400px; /* Ancho fijo del formulario */
             display: flex; /* Utiliza flexbox para el layout */
             flex-direction: column; /* Organiza los elementos en una columna */
         }
@@ -74,9 +74,9 @@
             background-color: #fff; /* Fondo blanco */
             border: 1px solid #ddd; /* Borde gris claro */
             border-radius: 4px; /* Bordes redondeados */
-            padding: 10px; /* Relleno interior */
+            padding: 20px; /* Relleno interior */
             overflow-x: auto; /* Permite el desplazamiento horizontal */
-            width: 300px; /* Ancho fijo del área de visualización */
+            width: 400px; /* Ancho fijo del área de visualización */
             white-space: pre-wrap; /* Mantiene espacios y saltos de línea */
             word-wrap: break-word; /* Ajusta las palabras largas */
         }
@@ -94,9 +94,6 @@
     </style>
 </head>
 <body>
-    <!-- Encabezado principal de la página -->
-    <h1>Directorio de viviendas</h1>
-
     <!-- Sección para el formulario de creación -->
     <h2>Base de datos</h2>
     <form id="apiForm">
@@ -111,7 +108,7 @@
     </form>
 
     <!-- Sección para el formulario de creación -->
-    <h2>Crear Dirección</h2>
+    <h2>Crear (C)</h2>
     <form id="createForm">
         <!-- Campo para la dirección -->
         <label for="direccion">Dirección:</label>
@@ -126,14 +123,14 @@
     </form>
 
     <!-- Sección para leer direcciones -->
-    <h2>Leer Direcciones</h2>
+    <h2>Leer (R)</h2>
     <!-- Botón para leer las direcciones -->
     <button id="readButton">Leer</button>
     <!-- Área para mostrar los resultados de la lectura -->
     <pre id="readResult"></pre>
 
     <!-- Sección para el formulario de actualización -->
-    <h2>Actualizar Dirección</h2>
+    <h2>Actualizar (U)</h2>
     <form id="updateForm">
         <!-- Campo para el ID de la dirección a actualizar -->
         <label for="id">ID:</label>
@@ -152,7 +149,7 @@
     </form>
 
     <!-- Sección para el formulario de eliminación -->
-    <h2>Eliminar Dirección</h2>
+    <h2>Eliminar (D)</h2>
     <form id="deleteForm">
         <!-- Campo para el ID de la dirección a eliminar -->
         <label for="deleteId">ID:</label>
