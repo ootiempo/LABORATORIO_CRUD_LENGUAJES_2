@@ -1,191 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Establece la codificación de caracteres del documento como UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Configura la vista para dispositivos móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título que aparecerá en la pestaña del navegador -->
     <title>LABORATORIO CRUD</title>
     <style>
+        /* Estilos para el cuerpo de la página */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: Arial, sans-serif; /* Fuente del texto */
+            background-color: #f4f4f9; /* Color de fondo */
+            margin: 0; /* Elimina el margen por defecto */
+            padding: 0; /* Elimina el relleno por defecto */
+            display: flex; /* Utiliza flexbox para el layout */
+            flex-direction: column; /* Organiza los elementos en una columna */
+            align-items: center; /* Centra los elementos horizontalmente */
         }
 
+        /* Estilos para los encabezados <h1> */
         h1 {
-            color: #333;
+            color: #333; /* Color del texto */
         }
 
+        /* Estilos para los formularios */
         form {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px 0;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
+            background: #fff; /* Fondo blanco */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+            padding: 20px; /* Relleno interior */
+            margin: 10px 0; /* Márgenes superior e inferior */
+            width: 300px; /* Ancho fijo del formulario */
+            display: flex; /* Utiliza flexbox para el layout */
+            flex-direction: column; /* Organiza los elementos en una columna */
         }
 
+        /* Estilos para las etiquetas <label> */
         label {
-            margin: 5px 0;
-            font-weight: bold;
+            margin: 5px 0; /* Márgenes superior e inferior */
+            font-weight: bold; /* Texto en negrita */
         }
 
+        /* Estilos para los campos de texto */
         input[type="text"] {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            padding: 8px; /* Relleno interior */
+            border: 1px solid #ddd; /* Borde gris claro */
+            border-radius: 4px; /* Bordes redondeados */
+            margin-bottom: 10px; /* Margen inferior */
         }
 
+        /* Estilos para los botones */
         button {
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            padding: 10px; /* Relleno interior */
+            border: none; /* Sin borde */
+            border-radius: 4px; /* Bordes redondeados */
+            background-color: #007bff; /* Color de fondo azul */
+            color: #fff; /* Color del texto blanco */
+            font-size: 16px; /* Tamaño de la fuente */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
         }
 
+        /* Estilos para el botón al pasar el ratón sobre él */
         button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Color de fondo más oscuro */
         }
 
+        /* Estilos para los elementos <pre> */
         pre {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            overflow-x: auto;
-            width: 300px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            background-color: #fff; /* Fondo blanco */
+            border: 1px solid #ddd; /* Borde gris claro */
+            border-radius: 4px; /* Bordes redondeados */
+            padding: 10px; /* Relleno interior */
+            overflow-x: auto; /* Permite el desplazamiento horizontal */
+            width: 300px; /* Ancho fijo del área de visualización */
+            white-space: pre-wrap; /* Mantiene espacios y saltos de línea */
+            word-wrap: break-word; /* Ajusta las palabras largas */
         }
 
+        /* Estilos para el elemento con id 'readResult' */
         #readResult {
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            white-space: pre-wrap; /* Mantiene espacios y saltos de línea */
+            word-wrap: break-word; /* Ajusta las palabras largas */
         }
 
+        /* Estilos para los encabezados <h2> */
         h2 {
-            color: #555;
+            color: #555; /* Color del texto */
         }
     </style>
 </head>
 <body>
+    <!-- Encabezado principal de la página -->
     <h1>Directorio de viviendas</h1>
 
-    <!-- Formulario para Crear -->
+    <!-- Sección para el formulario de creación -->
     <h2>Crear Dirección</h2>
     <form id="createForm">
+        <!-- Campo para la dirección -->
         <label for="direccion">Dirección:</label>
         <input type="text" id="direccion" name="direccion" required>
         <br>
+        <!-- Campo para el teléfono -->
         <label for="telefono">Teléfono:</label>
         <input type="text" id="telefono" name="telefono" required>
         <br>
+        <!-- Botón para enviar el formulario de creación -->
         <button type="submit">Crear</button>
     </form>
 
-    <!-- Botón para Leer -->
+    <!-- Sección para leer direcciones -->
     <h2>Leer Direcciones</h2>
+    <!-- Botón para leer las direcciones -->
     <button id="readButton">Leer</button>
+    <!-- Área para mostrar los resultados de la lectura -->
     <pre id="readResult"></pre>
 
-    <!-- Formulario para Actualizar -->
+    <!-- Sección para el formulario de actualización -->
     <h2>Actualizar Dirección</h2>
     <form id="updateForm">
+        <!-- Campo para el ID de la dirección a actualizar -->
         <label for="id">ID:</label>
         <input type="text" id="id" name="id" required>
         <br>
+        <!-- Campo para la nueva dirección -->
         <label for="newDireccion">Nueva Dirección:</label>
         <input type="text" id="newDireccion" name="newDireccion" required>
         <br>
+        <!-- Campo para el nuevo teléfono -->
         <label for="newTelefono">Nuevo Teléfono:</label>
         <input type="text" id="newTelefono" name="newTelefono" required>
         <br>
+        <!-- Botón para enviar el formulario de actualización -->
         <button type="submit">Actualizar</button>
     </form>
 
-    <!-- Botón para Eliminar -->
+    <!-- Sección para el formulario de eliminación -->
     <h2>Eliminar Dirección</h2>
     <form id="deleteForm">
+        <!-- Campo para el ID de la dirección a eliminar -->
         <label for="deleteId">ID:</label>
         <input type="text" id="deleteId" name="deleteId" required>
         <br>
+        <!-- Botón para enviar el formulario de eliminación -->
         <button type="submit">Eliminar</button>
     </form>
 
     <script>
-        // URL base para la API
+        // URL base para la API de Firebase
         const baseUrl = 'https://lenguajesprog2-default-rtdb.firebaseio.com/casa';
 
-        // Función para Crear
+        // Función para manejar el formulario de creación
         document.getElementById('createForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const direccion = document.getElementById('direccion').value;
-            const telefono = document.getElementById('telefono').value;
+            e.preventDefault(); // Previene el comportamiento por defecto del formulario
+            const direccion = document.getElementById('direccion').value; // Obtiene el valor del campo dirección
+            const telefono = document.getElementById('telefono').value; // Obtiene el valor del campo teléfono
 
+            // Envía una solicitud POST a la API para crear una nueva dirección
             const response = await fetch(`${baseUrl}.json`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json' // Define el tipo de contenido
                 },
-                body: JSON.stringify({ direccion, telefono })
+                body: JSON.stringify({ direccion, telefono }) // Envía los datos en formato JSON
             });
             if (response.ok) {
-                alert('Dirección creada con éxito');
+                alert('Dirección creada con éxito'); // Muestra un mensaje de éxito
             } else {
-                alert('Error al crear la dirección');
+                alert('Error al crear la dirección'); // Muestra un mensaje de error
             }
         });
 
-        // Función para Leer
+        // Función para manejar el botón de lectura
         document.getElementById('readButton').addEventListener('click', async function () {
+            // Envía una solicitud GET a la API para recuperar todas las direcciones
             const response = await fetch(`${baseUrl}.json`);
-            const data = await response.json();
-            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2);
+            const data = await response.json(); // Convierte la respuesta a formato JSON
+            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2); // Muestra los resultados en formato JSON
         });
 
-        // Función para Actualizar
+        // Función para manejar el formulario de actualización
         document.getElementById('updateForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const id = document.getElementById('id').value;
-            const newDireccion = document.getElementById('newDireccion').value;
-            const newTelefono = document.getElementById('newTelefono').value;
+            e.preventDefault(); // Previene el comportamiento por defecto del formulario
+            const id = document.getElementById('id').value; // Obtiene el valor del campo ID
+            const newDireccion = document.getElementById('newDireccion').value; // Obtiene el valor del campo nueva dirección
+            const newTelefono = document.getElementById('newTelefono').value; // Obtiene el valor del campo nuevo teléfono
 
+            // Envía una solicitud PUT a la API para actualizar una dirección existente
             const response = await fetch(`${baseUrl}/${id}.json`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json' // Define el tipo de contenido
                 },
-                body: JSON.stringify({ direccion: newDireccion, telefono: newTelefono })
+                body: JSON.stringify({ direccion: newDireccion, telefono: newTelefono }) // Envía los datos en formato JSON
             });
             if (response.ok) {
-                alert('Dirección actualizada con éxito');
+                alert('Dirección actualizada con éxito'); // Muestra un mensaje de éxito
             } else {
-                alert('Error al actualizar la dirección');
+                alert('Error al actualizar la dirección'); // Muestra un mensaje de error
             }
         });
 
-        // Función para Eliminar
+        // Función para manejar el formulario de eliminación
         document.getElementById('deleteForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const id = document.getElementById('deleteId').value;
+            e.preventDefault(); // Previene el comportamiento por defecto del formulario
+            const id = document.getElementById('deleteId').value; // Obtiene el valor del campo ID
 
+            // Envía una solicitud DELETE a la API para eliminar una dirección existente
             const response = await fetch(`${baseUrl}/${id}.json`, {
                 method: 'DELETE'
             });
             if (response.ok) {
-                alert('Dirección eliminada con éxito');
+                alert('Dirección eliminada con éxito'); // Muestra un mensaje de éxito
             } else {
-                alert('Error al eliminar la dirección');
+                alert('Error al eliminar la dirección'); // Muestra un mensaje de error
             }
         });
     </script>
