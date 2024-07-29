@@ -159,17 +159,14 @@
 
             // Envía una solicitud POST a la API para crear una nueva dirección
             const response = await fetch(`${baseUrl}.json`, {
-                method: 'POST',
+                method: 'POST', // Método HTTP para crear un nuevo recurso
                 headers: {
-                    'Content-Type': 'application/json' // Define el tipo de contenido
+                    'Content-Type': 'application/json' // Define el tipo de contenido como JSON
                 },
                 body: JSON.stringify({ direccion, telefono }) // Envía los datos en formato JSON
             });
-            if (response.ok) {
-                alert('Dirección creada con éxito'); // Muestra un mensaje de éxito
-            } else {
-                alert('Error al crear la dirección'); // Muestra un mensaje de error
-            }
+            // Muestra un mensaje de éxito o error según la respuesta de la API
+            alert(response.ok ? 'Dirección creada con éxito' : 'Error al crear la dirección');
         });
 
         // Función para manejar el botón de lectura
@@ -177,7 +174,8 @@
             // Envía una solicitud GET a la API para recuperar todas las direcciones
             const response = await fetch(`${baseUrl}.json`);
             const data = await response.json(); // Convierte la respuesta a formato JSON
-            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2); // Muestra los resultados en formato JSON
+            // Muestra los resultados en formato JSON en el área de visualización
+            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2);
         });
 
         // Función para manejar el formulario de actualización
@@ -189,17 +187,14 @@
 
             // Envía una solicitud PUT a la API para actualizar una dirección existente
             const response = await fetch(`${baseUrl}/${id}.json`, {
-                method: 'PUT',
+                method: 'PUT', // Método HTTP para actualizar un recurso existente
                 headers: {
-                    'Content-Type': 'application/json' // Define el tipo de contenido
+                    'Content-Type': 'application/json' // Define el tipo de contenido como JSON
                 },
-                body: JSON.stringify({ direccion: newDireccion, telefono: newTelefono }) // Envía los datos en formato JSON
+                body: JSON.stringify({ direccion: newDireccion, telefono: newTelefono }) // Envía los datos actualizados en formato JSON
             });
-            if (response.ok) {
-                alert('Dirección actualizada con éxito'); // Muestra un mensaje de éxito
-            } else {
-                alert('Error al actualizar la dirección'); // Muestra un mensaje de error
-            }
+            // Muestra un mensaje de éxito o error según la respuesta de la API
+            alert(response.ok ? 'Dirección actualizada con éxito' : 'Error al actualizar la dirección');
         });
 
         // Función para manejar el formulario de eliminación
@@ -209,13 +204,10 @@
 
             // Envía una solicitud DELETE a la API para eliminar una dirección existente
             const response = await fetch(`${baseUrl}/${id}.json`, {
-                method: 'DELETE'
+                method: 'DELETE' // Método HTTP para eliminar un recurso existente
             });
-            if (response.ok) {
-                alert('Dirección eliminada con éxito'); // Muestra un mensaje de éxito
-            } else {
-                alert('Error al eliminar la dirección'); // Muestra un mensaje de error
-            }
+            // Muestra un mensaje de éxito o error según la respuesta de la API
+            alert(response.ok ? 'Dirección eliminada con éxito' : 'Error al eliminar la dirección');
         });
     </script>
 </body>
