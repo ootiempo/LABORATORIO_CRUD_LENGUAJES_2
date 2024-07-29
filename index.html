@@ -98,6 +98,19 @@
     <h1>Directorio de viviendas</h1>
 
     <!-- Sección para el formulario de creación -->
+    <h2>Base de datos</h2>
+    <form id="apiForm">
+        <!-- Campo para la dirección -->
+        <label for="url">Url:</label>
+        <input type="text" id="url" name="url" value="https://lenguajesprog2-default-rtdb.firebaseio.com/" required>
+        <br>
+        <label for="rama">Rama:</label>
+        <input type="text" id="rama" name="rama">
+        <br>
+        <button type="submit">Cambiar</button>
+    </form>
+
+    <!-- Sección para el formulario de creación -->
     <h2>Crear Dirección</h2>
     <form id="createForm">
         <!-- Campo para la dirección -->
@@ -151,7 +164,14 @@
 
     <script>
         // URL base para la API de Firebase
-        const baseUrl = 'https://lenguajesprog2-default-rtdb.firebaseio.com/casa';
+        var baseUrl = 'https://lenguajesprog2-default-rtdb.firebaseio.com/';
+
+        // Función para manejar el formulario de creación
+        document.getElementById('apiForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); 
+            baseUrl = document.getElementById('url').value + document.getElementById('rama').value ;
+            alert('API actualizada con éxito');
+        });
 
         // Función para manejar el formulario de creación
         document.getElementById('createForm').addEventListener('submit', async function (e) {
