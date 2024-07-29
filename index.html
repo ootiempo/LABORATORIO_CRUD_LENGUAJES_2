@@ -91,6 +91,13 @@
         h2 {
             color: #555; /* Color del texto */
         }
+
+        #jsoncrackEmbed {
+            width: 80%;
+            height: 640px;
+            border: none;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -129,6 +136,9 @@
     <!-- Área para mostrar los resultados de la lectura -->
     <pre id="readResult"></pre>
 
+    <h2>Arbol de datos</h2>
+    <iframe id="jsoncrackEmbed" src="https://jsoncrack.com/widget?json=https://lenguajesprog2-default-rtdb.firebaseio.com/.json"></iframe>
+
     <!-- Sección para el formulario de actualización -->
     <h2>Actualizar (U)</h2>
     <form id="updateForm">
@@ -159,15 +169,26 @@
         <button type="submit">Eliminar</button>
     </form>
 
+    <br>
+
     <script>
+
         // URL base para la API de Firebase
         var baseUrl = 'https://lenguajesprog2-default-rtdb.firebaseio.com/';
+
+        async function leerDatos() {
+            const response = await fetch(`${baseUrl}.json`);
+            const data = await response.json();
+            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2);
+            const jsoncrackEmbed = document.getElementById('jsoncrackEmbed');
+            jsoncrackEmbed.src = `https://jsoncrack.com/widget?json=${baseUrl}.json`;
+        }
 
         // Función para manejar el formulario de creación
         document.getElementById('apiForm').addEventListener('submit', async function (e) {
             e.preventDefault(); 
             baseUrl = document.getElementById('url').value + document.getElementById('rama').value ;
-            alert('API actualizada con éxito');
+            await leerDatos();
         });
 
         // Función para manejar el formulario de creación
@@ -184,17 +205,12 @@
                 },
                 body: JSON.stringify({ direccion, telefono }) // Envía los datos en formato JSON
             });
-            // Muestra un mensaje de éxito o error según la respuesta de la API
-            alert(response.ok ? 'Dirección creada con éxito' : 'Error al crear la dirección');
+            await leerDatos();
         });
 
         // Función para manejar el botón de lectura
         document.getElementById('readButton').addEventListener('click', async function () {
-            // Envía una solicitud GET a la API para recuperar todas las direcciones
-            const response = await fetch(`${baseUrl}.json`);
-            const data = await response.json(); // Convierte la respuesta a formato JSON
-            // Muestra los resultados en formato JSON en el área de visualización
-            document.getElementById('readResult').textContent = JSON.stringify(data, null, 2);
+            await leerDatos();
         });
 
         // Función para manejar el formulario de actualización
@@ -212,8 +228,7 @@
                 },
                 body: JSON.stringify({ direccion: newDireccion, telefono: newTelefono }) // Envía los datos actualizados en formato JSON
             });
-            // Muestra un mensaje de éxito o error según la respuesta de la API
-            alert(response.ok ? 'Dirección actualizada con éxito' : 'Error al actualizar la dirección');
+            await leerDatos();
         });
 
         // Función para manejar el formulario de eliminación
@@ -225,8 +240,7 @@
             const response = await fetch(`${baseUrl}/${id}.json`, {
                 method: 'DELETE' // Método HTTP para eliminar un recurso existente
             });
-            // Muestra un mensaje de éxito o error según la respuesta de la API
-            alert(response.ok ? 'Dirección eliminada con éxito' : 'Error al eliminar la dirección');
+            await leerDatos();
         });
     </script>
 </body>
